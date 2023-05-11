@@ -1,0 +1,50 @@
+
+<body>
+    <button data-id="1234" >I like</button>
+    <button data-id="1234" >I like</button>
+    <button data-id="1234" >I like</button>
+
+    <style>
+        body{
+            background: rgb(42, 42, 42);
+            margin: 0;
+            padding: 0;
+        }
+        button{
+            background: #09f;
+            border: 0;
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 18px;
+            margin: auto auto;
+        }
+    </style>
+
+    <script>
+
+        // IMPERATIVE CODE: we give instructions to do something
+        // vanilla JavaScript 
+
+        // we get the button
+        const buttons = document.querySelectorAll('button')
+
+        buttons.forEach(button => {
+                // when clicked we have to execute a function
+            button.addEventListener('click', function(){
+                // retrieve attribute id from html
+                const id = button.getAttribute('data-id')
+                // call a service to update if I like it
+                // toggleLike(id)
+                if(button.classList.contains('liked')){
+                    button.classList.remove('liked')
+                    button.innerText = 'I like'
+                } else {
+                    button.classList.add('liked')
+                    button.innerText = 'Remove like'
+                }
+            })
+        })
+
+    </script>
+
+</body>
