@@ -41,6 +41,11 @@
   
   .tw-followCard-button:hover {
     opacity: .8;
+    background-color: rgba(33, 132, 185, 0.178);
+    color: rgb(0, 153, 255);
+    border: 1px solid rgb(0, 170, 255);
+    transition: .3s ease all;
+    opacity: 1;
   }
   
   .tw-followCard-text {
@@ -55,9 +60,9 @@
   }
   
   .tw-followCard-button.is-following:hover {
-    background-color: rgba(255, 0, 0, 0.178);
-    color: red;
-    border: 1px solid red;
+    background-color: rgba(216, 40, 40, 0.178);
+    color: rgb(224, 16, 16);
+    border: 1px solid rgb(226, 16, 16);
     transition: .3s ease all;
     opacity: 1;
   }
