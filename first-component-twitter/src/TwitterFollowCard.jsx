@@ -1,13 +1,13 @@
 import { useState } from "react"
 
-export function TwitterFollowCard ({userName, name: children, urlImage}) {
+export function TwitterFollowCard ({ children, userName, urlImage, initialIsFollowing }) {
 
     // const state = useState(false)
     // const isFollowing = state[0]
     // const setIsFollowing = state[1]
 
     // 
-    const [isFollowing, setIsFollowing] = useState(false)
+    const [isFollowing, setIsFollowing] = useState(initialIsFollowing)
 
     console.log(isFollowing)
 
@@ -33,6 +33,8 @@ export function TwitterFollowCard ({userName, name: children, urlImage}) {
                     <span className="tw-followCard-infoUserName">@{userName}</span>
                 </div>
             </header>
+
+            {/* I am a comment in JSX */}
 
             <aside>
                 <button className={buttonClassName} onClick = {handleClick}> 
