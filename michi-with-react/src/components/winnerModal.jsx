@@ -1,6 +1,6 @@
-import { Square } from "./Square.jsx"
+import { Square } from './Square.jsx'
 
-export function WinnerModal ({winner, resetGame}) {
+export function WinnerModal ({ winner, resetGame }) {
     if (winner === null) return null
 
     const winnerText = winner === false ? 'A tie' : 'You win'
@@ -8,7 +8,7 @@ export function WinnerModal ({winner, resetGame}) {
     return (    
     
         <section className="winner">
-        <div className="tect">
+        <div className="text">
             <h2>{winnerText}</h2>
 
             <header className="win">
