@@ -8,3 +8,12 @@ body{
     color: aliceblue;
 }
 
+a{
+    text-decoration: none;
+    color: rgb(30, 210, 186);
+    letter-spacing: 1px;
+    
+}
+li{
+    list-style: none;
+}
