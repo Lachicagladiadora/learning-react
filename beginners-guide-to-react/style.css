@@ -15,5 +15,5 @@ a{
     
 }
 li{
-    list-style: none;
+    list-style: decimal-leading-zero;
 }
