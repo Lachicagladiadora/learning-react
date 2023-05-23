@@ -1,19 +1,30 @@
 :root{
-    background: #222;
+    background: #20232a;;
     
 }
 
 body{
-    background: #222;
-    color: aliceblue;
+    background: #20232a;;
+    color: rgb(255, 255, 255);
+    
+}
+p{
+    text-align: center;
+}
+h1{
+    color: rgb(164, 178, 198);
+    text-shadow: 0 0 10px rgb(97, 218, 251);;
+    text-align: center;
 }
 
 a{
     text-decoration: none;
-    color: rgb(30, 210, 186);
+    color: rgb(97, 218, 251);
     letter-spacing: 1px;
-    
+    /* padding-left: 20%;    */
 }
 li{
     list-style: decimal-leading-zero;
+    color: rgb(166, 231, 249);
+    list-style-position: inside;
 }
