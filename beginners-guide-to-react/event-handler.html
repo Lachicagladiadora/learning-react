@@ -1,0 +1,62 @@
+<body>
+    <div id="root"></div>
+
+
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+
+    <script type="text/babel">
+        const rootElement = document.getElementById('root')
+
+        const state = {eventCount: 0, username: ''}
+
+        function App() {
+            function handleClick () {
+                setState({eventCount: state.eventCount + 1})
+            }
+            function handleChange(event) {
+                console.log(event.nativeEvent)
+                setState({username: event.target.value})
+            }
+            return (
+                <div>
+                    <p>There have been {state.eventCount} events. </p>
+                    <p>
+                        <button 
+                            /*onClick={() => setState({eventCount: state.eventCount + 1})}*/
+                            /*onFocus={() => setState({eventCount: state.eventCount + 1})}*/
+                            /*onMouseOver={() => setState({eventCount: state.eventCount + 1})}*/
+                            onClick={handleClick}
+                        >
+                            Click me
+                        </button>    
+                    </p>
+                    <p>You typed: {state.username}</p>
+                    <p>
+                        <input 
+                            /*onBlur={event => setState({username: event.target.value})}*/
+                            /*onChange={event => setState({username: event.target.value})}*/
+                            onChange={handleChange}
+                        />
+                    </p>
+                </div>
+            )
+        }
+
+        function setState(newState) {
+            Object.assign(state, newState)
+            renderApp()
+        }
+
+        function renderApp(){
+            ReactDOM.render(<App/>, rootElement)
+        }
+
+        // ReactDOM.render(element, rootElement)
+        renderApp()
+
+    </script>
+
+</body>
