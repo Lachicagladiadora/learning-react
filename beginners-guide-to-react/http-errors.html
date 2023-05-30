@@ -9,25 +9,41 @@
     const rootElement = document.getElementById('root')
 
     function PokemonInfo({pokemonName}) {
+      const [status, setStatus] = React.useState('idle')
       const [pokemon, setPokemon] = React.useState(null)
+      const [error, setError] = React.useState(null)
 
       React.useEffect(() => {
         if(!pokemonName) {
           return
         }
-        fetchPokemon(pokemonName).then(pokemonData => {
-          setPokemonData(pokemonData)
-        })
+        setStatus('pending')
+        fetchPokemon(pokemonName).then(
+          pokemonData => {
+            setStatus('resolved')
+            setPokemonData(pokemonData)
+          }, errorData => { 
+            setStatus('rejected')
+            setError(errorData)
+          },
+        )
       }, [pokemonName]) 
-      if(!pokemonName) {
+
+      if(status === 'idle') {
         return 'Search a pokemon'
       }
-      if(!pokemon) {
+
+      if(status === 'rejected') {
+        return 'Oh no...!'
+      }
+
+      if(status === 'pending') {
         return "..."
       }
 
-      // return <div>Need to request info for: {pokemonName}</div>
-      return  <pre>{JSON.stringify(pokemon, null, 2)}</pre>
+      if(status === 'resolved') {
+        return  <pre>{JSON.stringify(pokemon, null, 2)}</pre>
+      }
       
     }
 
@@ -56,7 +72,7 @@
 
     function fetchPokemon(name) {
       const pokemonQuery = `
-        query($name: String)
+        query($name: String){
           pokemon(name: $name){
             id
             number
@@ -69,6 +85,7 @@
               }
             }
           }
+        }
       `
 
       return window 
