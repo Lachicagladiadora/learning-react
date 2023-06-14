@@ -1,18 +1,17 @@
-import { CSSProperties, ChangeEventHandler, InputHTMLAttributes } from "react"
+import {  CSSProperties, DetailedHTMLProps, FormEvent, InputHTMLAttributes } from "react"
 
 type InputProps = {
   value?: string,
   // setValue?: (newValue: string) => void
-  id?: string,
+  // id?: string,
   placeholder?: string,
-  onChange: ChangeEventHandler ,
   style?: CSSProperties,
+  onChange:(event: FormEvent<HTMLInputElement>) => void | DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
 }
 
-export const Input = ({ id, placeholder, value, onChange, style }: InputProps) => {
+export const Input = ({  placeholder, value, onChange, style }: InputProps) => {
   return (
     <input
-      id={id}
       type="text"
       placeholder={placeholder}
       value={value}

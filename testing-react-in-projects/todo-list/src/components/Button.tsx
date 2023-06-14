@@ -7,7 +7,7 @@ type ButtonProps={
   id?:string,
   style?:CSSProperties
 }
-export const Button=({children, onClick, type, id,style}:ButtonProps)=>{
+export const Button=({children, onClick, id,style}:ButtonProps)=>{
   return(
     <button 
       id={id} 
@@ -16,6 +16,8 @@ export const Button=({children, onClick, type, id,style}:ButtonProps)=>{
       style={{
         border:'solid 2px green', 
         background:'#2DC626',
+        borderRadius:'20px',
+        padding:'10px 14px',
         ...style
       }}
     >
