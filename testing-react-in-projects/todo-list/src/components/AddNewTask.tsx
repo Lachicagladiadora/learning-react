@@ -2,21 +2,24 @@ import { useState } from "react"
 import { Input } from "./Input"
 import { Button } from "./Button"
 
-export const AddNewTask = () => {
-  const [newTaskValue,setNewTaskValue]=useState('')
+export const AddNewTask = ({ createNewTask }) => {
+  // console.log(props)
+  const [newTaskValue, setNewTaskValue] = useState('')
 
-  const onSubmit=(_event: { preventDefault: () => void })=>{
+  const onSubmit = (_event: { preventDefault: () => void }) => {
     _event.preventDefault()
-    window.localStorage.setItem('TASK',newTaskValue)
+    createNewTask(newTaskValue)
+    window.localStorage.setItem('TASK', newTaskValue)
     setNewTaskValue('')
   }
 
-  return(
+  return (
     <form onSubmit={onSubmit} >
-        <Input  value={newTaskValue} onChange={(event) => setNewTaskValue((event.target as HTMLInputElement).value)} placeholder='write a new tag'></Input>
-        <Button >
-          Save tag
-        </Button>
-      </form>
+      <Input value={newTaskValue} onChange={(event) => setNewTaskValue((event.target as HTMLInputElement).value)} placeholder='write a new tag'></Input>
+      <Button >
+        Save tag
+      </Button>
+    </form>
   )
 }
+
