@@ -1,24 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 import { AddNewTask } from './components/AddNewTask'
+import { TaskTable } from './components/TaskTable'
 
 
 export const App = () => {
-  const [allTaskItems, setAllTaskItems] = useState([
-    { name: 'first task', done: false },
-    { name: 'second task', done: false },
-    { name: 'third task', done: false },
-    { name: 'quarter task', done: false },
-    { name: 'fifth task', done: false },
-  ])
-
-  const createNewTask = (taskName: string) => {
-    if (!allTaskItems.find(task => task.name === taskName)) {
-      setAllTaskItems([...allTaskItems, { name: taskName, done: false }])
+  const [taskItems, setTaskItems] = useState<{ content: string; done: boolean; }[]>([])
+  // {name: 'sd', done: false}
+  const createNewTask = (taskContent: string): void => {
+    if (!taskItems.find((task) => task.content === taskContent)) {
+      setTaskItems([...taskItems, { content: taskContent, done: false }])
+      console.log(taskContent)
     }
-
   }
+
+  const toogleTask=(task:any)=>{
+    setTaskItems(
+      taskItems.map((t)=>(t.content === task.content ? {...t, done : !t.done} : t))
+    )
+  }
+
+  useEffect(() => {
+    const data = localStorage.getItem('TasksList')
+    if (data) {
+      // console.log(JSON.parse(data))
+      // console.log(setTaskItems(JSON.parse(data)))
+      setTaskItems(JSON.parse(data))
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('change')
+    localStorage.setItem('TasksList', JSON.stringify(taskItems))
+  }, [taskItems])
 
   return (
     <>
@@ -26,23 +41,7 @@ export const App = () => {
 
       <AddNewTask createNewTask={createNewTask} />
 
-      <table>
-        <thead>
-          <tr>
-            <th>Tasks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            allTaskItems.map((task) => (
-              <tr key={task.name}>
-                <td>{task.name}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-
+      <TaskTable tasks={taskItems} toogleTask={toogleTask}/>
 
 
     </>
